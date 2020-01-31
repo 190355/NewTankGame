@@ -145,6 +145,9 @@
     <ClCompile Include="Engine\Sprite.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +171,9 @@
     <ClInclude Include="Engine\Sprite.h" />
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Transform.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Tank.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>

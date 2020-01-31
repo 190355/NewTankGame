@@ -1,4 +1,7 @@
 #include "TestScene.h"
+#include "Tank.h"
+#include "Ground.h"
+
 
 //コンストラクタ
 TestScene::TestScene(GameObject * parent)
@@ -9,6 +12,8 @@ TestScene::TestScene(GameObject * parent)
 //初期化
 void TestScene::Initialize()
 {
+	Instantiate<Tank>(this);
+	Instantiate<Ground>(this);
 }
 
 //更新
