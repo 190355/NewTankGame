@@ -1,4 +1,6 @@
 #include "Cannon.h"
+#include "Bullet.h"
+#include "Tank.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 
@@ -35,6 +37,13 @@ void Cannon::Update()
 	if (Input::IsKey(DIK_RIGHT))
 	{
 		transform_.rotate_.vecY += SWING_SPEED;
+	}
+
+	//スペースキーを押したら
+	if (Input::IsKeyDown(DIK_SPACE))
+	{
+		Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
+		pBullet->Shot(transform_.position_,XMVectorSet(0.3f,0,0,0));
 	}
 }
 
