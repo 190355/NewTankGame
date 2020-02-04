@@ -1,5 +1,6 @@
 #include "Tank.h"
 #include "Ground.h"
+#include "Cannon.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
@@ -21,11 +22,15 @@ void Tank::Initialize()
 	//モデルデータのロード
 	hModel_ = Model::Load("TankBody.fbx");
 	assert(hModel_ >= 0);
+
+	//子供として砲台を追加
+	Instantiate<Cannon>(this);
 }
 
 //更新
 void Tank::Update()
 {
+	/*
 	Ground* pGround = (Ground*)FindObject("Ground");    //ステージオブジェクトを探す
 	int hGroundModel = pGround->GetModelHandle();       //モデル番号を取得
 
@@ -48,21 +53,17 @@ void Tank::Update()
 		transform_.position_.vecY += 0.1f;
 	}
 
-
-	//マウスカーソルの位置
-	XMVECTOR mouse;
-	mouse = Input::GetMousePosition();
-
 	//カメラをTPSのようにマウスを動かすとY軸固定で回す
 	Camera::SetPosition(XMVectorSet(transform_.position_.vecX, (transform_.position_.vecY + 3.0f), (transform_.position_.vecZ - 10.0f), 0.0f));
 	Camera::SetTarget(XMVectorSet(transform_.position_.vecX, transform_.position_.vecY, transform_.position_.vecZ, 0.0f));
-	
-	
+	*/
+
 	XMVECTOR move = { 0.0f,0.0f,0.1f,0.0f };
 
 	XMMATRIX mat;
 	mat = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.vecY));
-	move = XMVector3TransformCoord(move,mat);
+	move = XMVector3TransformCoord(move, mat);
+
 	//Wキーが押されていたら
 	if (Input::IsKey(DIK_W))
 	{
@@ -78,7 +79,7 @@ void Tank::Update()
 	//Aキーが押されていたら
 	if (Input::IsKey(DIK_A))
 	{
-		
+
 		transform_.rotate_.vecY -= 1.0f;
 	}
 
@@ -87,6 +88,14 @@ void Tank::Update()
 	{
 		transform_.rotate_.vecY += 1.0f;
 	}
+
+	//カメラの見る位置
+	Camera::SetTarget(transform_.position_);
+
+	//カメラの位置
+	XMVECTOR camVec = { 0,4,-7,0 };
+	camVec = XMVector3TransformCoord(camVec, mat);
+	Camera::SetPosition(transform_.position_ + camVec);
 }
 
 //描画

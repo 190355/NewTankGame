@@ -1,16 +1,17 @@
 #pragma once
 #include "Engine/GameObject.h"
 
-//Tankを管理するクラス
-class Ground : public GameObject
+//戦車の上部分を管理するクラス
+class Cannon : public GameObject
 {
+	const float SWING_SPEED = 3.0f; //左右の回転スピード
 	int hModel_;    //モデル番号
 public:
 	//コンストラクタ
-	Ground(GameObject* parent);
+	Cannon(GameObject* parent);
 
 	//デストラクタ
-	~Ground();
+	~Cannon();
 
 	//初期化
 	void Initialize() override;

@@ -1,7 +1,7 @@
 #include "PlayScene.h"
 #include "Tank.h"
 #include "Ground.h"
-
+#include "Cannon.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject * parent)
