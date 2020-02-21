@@ -6,6 +6,7 @@ class Cannon : public GameObject
 {
 	const float SWING_SPEED = 3.0f; //左右の回転スピード
 	int hModel_;    //モデル番号
+	int hSound_;    //サウンド番号
 public:
 	//コンストラクタ
 	Cannon(GameObject* parent);

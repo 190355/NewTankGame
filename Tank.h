@@ -5,6 +5,7 @@
 class Tank : public GameObject
 {
 	int hModel_;    //モデル番号
+	int hSound_;    //サウンド番号
 public:
 	//コンストラクタ
 	Tank(GameObject* parent);

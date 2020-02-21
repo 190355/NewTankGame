@@ -3,10 +3,11 @@
 #include "Tank.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
+#include "Engine/Audio.h"
 
 //コンストラクタ
 Cannon::Cannon(GameObject * parent)
-	:GameObject(parent, "Cannon"), hModel_(-1), SWING_SPEED(3.0f)
+	:GameObject(parent, "Cannon"), hModel_(-1), hSound_(-1), SWING_SPEED(3.0f)
 {
 }
 
@@ -21,6 +22,10 @@ void Cannon::Initialize()
 	//モデルデータのロード
 	hModel_ = Model::Load("TankHead.fbx");
 	assert(hModel_ >= 0);
+
+	//サウンドデータのロード
+	hSound_ = Audio::Load("CannonShot.wav");
+	assert(hSound_ >= 0);
 }
 
 //更新
@@ -44,6 +49,8 @@ void Cannon::Update()
 	{
 		Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
 		pBullet->Shot(transform_.position_,XMVectorSet(0.3f,0,0,0));
+
+		Audio::Play(hSound_);
 	}
 }
 
