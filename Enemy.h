@@ -1,18 +1,17 @@
 #pragma once
 #include "Engine/GameObject.h"
 
-//戦車(上)を管理するクラス
-class Cannon : public GameObject
+//敵を管理するクラス
+class Enemy : public GameObject
 {
-	const float SWING_SPEED = 3.0f; //左右の回転スピード
 	int hModel_;    //モデル番号
-	int hSound_;    //サウンド番号
+
 public:
 	//コンストラクタ
-	Cannon(GameObject* parent);
+	Enemy(GameObject* parent);
 
 	//デストラクタ
-	~Cannon();
+	~Enemy();
 
 	//初期化
 	void Initialize() override;
@@ -25,7 +24,4 @@ public:
 
 	//開放
 	void Release() override;
-
-	//地面のモデル番号を取得
-	int GetModelHandle() { return hModel_; }
 };

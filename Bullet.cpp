@@ -2,9 +2,11 @@
 #include "Engine/Model.h"
 #include "Engine/SphereCollider.h"
 
+#define FLOAT 0,02
+
 //コンストラクタ
 Bullet::Bullet(GameObject * parent)
-	:GameObject(parent, "Bullet"), hModel_(-1), move_(XMVectorSet(0, 0, 0, 0))
+	:GameObject(parent, "Bullet"), hModel_(-1), move_(XMVectorSet(0, 0, 0, 0)), SPEED(0.5f)
 {
 }
 
@@ -29,6 +31,9 @@ void Bullet::Update()
 {
 	transform_.position_ += move_;
 
+	move_.vecY -= FLOAT;
+	if (transform_.position_.vecY < -10)
+		KillMe();
 }
 
 //描画
@@ -50,5 +55,6 @@ void Bullet::Shot(XMVECTOR position, XMVECTOR direction)
 	transform_.position_ = position;
 
 	//移動ベクトル
-	move_ = direction;
+	//XMVector3Normalizeで正規化して "* SPEED"（スカラー倍）で速度を決定
+	move_ = XMVector3Normalize(direction) * SPEED;
 }

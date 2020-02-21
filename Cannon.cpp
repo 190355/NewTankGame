@@ -47,8 +47,11 @@ void Cannon::Update()
 	//スペースキーを押したら
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
-		Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
-		pBullet->Shot(transform_.position_,XMVectorSet(0.3f,0,0,0));
+		Bullet* pBullet = Instantiate<Bullet>(FindObject("PlayScene"));
+		XMVECTOR shotPos = Model::GetBonePosition(hModel_, "ShotPoint");
+		XMVECTOR cannonRoot = Model::GetBonePosition(hModel_, "CannonRoot");
+
+		pBullet->Shot(shotPos, shotPos - cannonRoot);
 
 		Audio::Play(hSound_);
 	}

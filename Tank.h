@@ -1,11 +1,12 @@
 #pragma once
 #include "Engine/GameObject.h"
 
-//◆◆◆を管理するクラス
+//戦車(下)を管理するクラス
 class Tank : public GameObject
 {
 	int hModel_;    //モデル番号
 	int hSound_;    //サウンド番号
+
 public:
 	//コンストラクタ
 	Tank(GameObject* parent);
@@ -24,4 +25,6 @@ public:
 
 	//開放
 	void Release() override;
+
+	void FitHeightToGround();
 };

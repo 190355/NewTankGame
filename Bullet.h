@@ -6,6 +6,7 @@ class Bullet : public GameObject
 {
 	int hModel_;    //モデル番号
 	XMVECTOR move_; //移動ベクトル
+	const float SPEED; //弾の速さ
 
 public:
 	//コンストラクタ
